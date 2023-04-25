@@ -101,6 +101,10 @@ class LoginController extends Controller
                             $rid = 0;
                             $sid = 0;
                             $unit[] = 0;
+                            $STIME = 0;
+                            $ETIME = 0;
+                            $SEC = 0;
+                            $LAB = 0;
                         }else{
                             $rid =  $schedule1->room;
                             $unit = units::where('room_id', $schedule1->room)->get();

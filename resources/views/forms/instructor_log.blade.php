@@ -181,9 +181,9 @@
                             <th scope="col" class="py-3 text-left pl-2">Status</th>
                             <th scope="col" class="py-3 text-left pl-2">Issue</th>
                             <th scope="col" class="py-3 text-left pl-2">Student</th>
-                            <th scope="col" class="py-3 text-left pl-2">Time In</th>
+                            {{-- <th scope="col" class="py-3 text-left pl-2">Time In</th>
                             <th scope="col" class="py-3 text-left pl-2">Time Out</th>
-                            <th scope="col" class="py-3 text-left pl-2">FeedBack</th>
+                            <th scope="col" class="py-3 text-left pl-2">FeedBack</th> --}}
                             <th scope="col" class="py-3 text-left pl-2">Action</th>
                         </tr>
                     </thead>
@@ -215,9 +215,9 @@
                                 @endif
 
                                 <td class="py-3 text-left pl-2">{{ studentPC($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td>
-                                <td class="py-3 text-left pl-2">{{ studentTimeIn($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td>
+                                {{-- <td class="py-3 text-left pl-2">{{ studentTimeIn($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td>
                                 <td class="py-3 text-left pl-2">{{ studentTimeOut($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td>
-                                <td class="py-3 text-left pl-2">{{ studentFeedBack($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td>
+                                <td class="py-3 text-left pl-2">{{ studentFeedBack($schedule->start_time, $schedule->end_time, $section_name, $schedule->room, $unit->pc_number) }}</td> --}}
                                 <td class="py-3 text-left pl-2 italic text-blue-800 underline">
                                     <a href="{{ '/edit/instructorPC/'.$rid.'/'.$unit->id }}">edit</a>
                                 </td>

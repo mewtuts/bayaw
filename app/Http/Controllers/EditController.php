@@ -34,7 +34,7 @@ class EditController extends Controller
 
         return redirect()->back();
 
-        return redirect('instructor/editpc/'.$pcid)->with('updated', 'Updated Successfully');
+        return redirect('/instructor/dashboard')->with('updated', 'Updated Successfully');
     }
 
     public function edit_users(Request $request, $id)

@@ -75,6 +75,85 @@ Route::post('/update/data', [SignUpController::class, 'update'])->name('updatein
 
 //login
 Route::post('/login/user', [LoginController::class, 'login'])->name('login');
+Route::get('/instructor/dashboard', function()
+{
+    $user_mname = Session::get('user_firstname');
+    $user_lname = Session::get('user_lastname');
+    $user_id = Session::get('user_id');
+
+    $date = Carbon::now();
+    $asianDate = $date->format('H:i');
+    $asianDateDay = $date->format('l');
+
+    $schedule1 = Users::join('schedules', 'schedules.instructor', '=', 'users.id')
+    ->where('schedules.start_time', '<=', $asianDate)
+    ->where('schedules.end_time', '>=', $asianDate)
+    ->where('schedules.day', 'like', '%'.$asianDateDay.'%')
+    ->where('schedules.instructor', $user_id)
+    ->first();
+
+    if ( empty($schedule1) ) {
+
+        $rid = 0;
+        $sid = 0;
+        $unit[] = 0;
+        return back()->with('noSched', 'You dont have schedule at the moment');
+
+    } else {
+
+        $rid =  $schedule1->room;
+
+        $unit = units::where('room_id', $schedule1->room)->get();
+
+        $sid = $schedule1->id;
+
+        $date = Carbon::now();
+        $timein = $date = $date->format('H:i:s');
+        $date1 = Carbon::now();
+        $ymd = $date1 = $date1->format('Y:m:d');
+
+        $schedule = schedules::find($sid);
+
+        $lab_number = $schedule->room;
+        $s_Day = $schedule->day;
+        $s_StartTime = $schedule->start_time;
+        $s_EndTime = $schedule->end_time;
+        $s_Room = $schedule->room;
+
+        $subject = subjects::find($schedule->subject_id);
+
+        $subject_name = $subject->subject;
+        $subject_code = $subject->subject_code;
+        $section = sections::find($schedule->section_id);
+        $section_name = $section->section;
+
+        session()->put('name', $user_mname.' '.$user_lname);
+        session()->put('s_Day', $s_Day);
+        session()->put('start_time', $timein);
+        session()->put('subject_name', $subject_name);
+        session()->put('section_name', $section_name);
+        session()->put('s_Room', $s_Room);
+
+        $student_logs = Logs::whereBetween('start_time', [$s_StartTime,$s_EndTime])
+        ->where('day',$s_Day)
+        ->where('section',$section_name)
+        ->where('subject',$subject_name)
+        ->where('room',$s_Room)
+        ->get();
+
+        $units = units::where('room_id',$s_Room)->get();
+
+        $studentList = Logs::
+        where('created_at', '>=', $ymd.' '.$s_StartTime)
+        ->where('created_at', '<=', $ymd.' '.$s_EndTime)
+        ->where('section', $section_name)
+        ->where('room', $s_Room)
+        ->get();
+
+        return view('forms.instructor_log', compact('section_name','schedule', 'unit','rid', 'units', 'sid', 'student_logs', 'studentList'));
+    }
+
+});
 
 //login to student dashboard
 Route::get('/student/dashboard', function(){
