@@ -56,19 +56,19 @@
     });
 
     $('#editable').Tabledit({
-        url:'{{ route("tabledit/action") }}',
+        url:'{{ route("tabledit/actions") }}',
         dataType:"json",
         columns:{
-        identifier:[[0, 'id'],[1, 'pc_number']],
-        editable:[[2, 'status', '{"1":"WORKING", "2":"NOT-WORKING"}'], [3, 'issue']]
+            identifier:[[0, 'id'],[1, 'pc_number']],
+            editable:[[2, 'status', '{"1":"WORKING", "2":"NOT-WORKING"}'], [3, 'issue']]
         },
         restoreButton:false,
         onSuccess:function(data, textStatus, jqXHR)
         {
-        if(data.action == 'delete')
-        {
-            $('#'+data.id).remove();
-        }
+            if(data.action == 'delete')
+            {
+                $('#'+data.id).remove();
+            }
         }
     });
 

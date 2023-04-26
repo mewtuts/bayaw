@@ -41,12 +41,13 @@ use Maatwebsite\Excel\Row;
 */
 
 // Logs::truncate();
+// units::truncate();
 // proflogs::truncate();
 // practice field
 
 Route::get('/tabledit', [TableditController::class, 'index']);
 
-Route::post('tabledit/action', [TableditController::class, 'action'])->name('tabledit/action');
+Route::post('tabledit/action', [TableditController::class, 'action'])->name('tabledit/actions');
 
 Route::get('/practice/try', function(){
     $stud = DB::table('logs')
@@ -263,6 +264,8 @@ Route::get('/edit/instructorPC/{roomID}/{pcid}', [AddRoom::class, 'show_form_edi
 Route::post('/edit_pc/{pcid}/{labID}', [EditController::class, 'editpc']);
 // edit pc status and issue on instructor side
 Route::post('/edit_unit/{pcid}/{roomID}', [EditController::class, 'editpcstatus']);
+// edit pc status and issue on instructor side using modal
+Route::post('/updateData', [EditController::class, 'updateData'])->name('updateData');
 
 //allow status of each sections
 // Route::get('/section/status/{sectionID}', [AddSection::class, 'secStatus']);

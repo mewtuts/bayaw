@@ -190,6 +190,7 @@ class LoginController extends Controller
                             ->get();
 
                             $units = units::where('room_id',$s_Room)->get();
+                            // dd($units);
 
                             $studentList = Logs::
                             where('created_at', '>=', $ymd.' '.$s_StartTime)

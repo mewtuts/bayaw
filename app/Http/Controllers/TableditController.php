@@ -16,12 +16,12 @@ class TableditController extends Controller
 
     function action(Request $request)
     {
-        // dd($request->id);
+        dd($request->id);
         if($request->ajax())
         {
             if($request->action == 'edit')
             {
-                $updated = units::find('id', $request->id);
+                $updated = units::find($request->id);
                 $updated->status = $request->status;
                 $updated->issue = $request->issue;
 

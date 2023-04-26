@@ -37,6 +37,19 @@ class EditController extends Controller
         return redirect('/instructor/dashboard')->with('updated', 'Updated Successfully');
     }
 
+    public function updateData(Request $request)
+    {
+
+        
+
+        $data = units::find($request->pc_id);
+        $data->status = $request->status;
+        $data->issue = $request->issue;
+        $data->save();
+        
+        return redirect('/instructor/dashboard')->with('success', 'Data updated successfully!');
+    }
+
     public function edit_users(Request $request, $id)
     {
         $edit = DB::table('users')
