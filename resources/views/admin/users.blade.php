@@ -251,7 +251,12 @@
                 <ul class="space-y-2">
                     <li>
                         <a href="/dashboard" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white">
-                        <span class="ml-3">Logs</span>
+                        <span class="ml-3">Student Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/instruc/logs" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white">
+                        <span class="ml-3">Instructor Logs</span>
                         </a>
                     </li>
                     <li>

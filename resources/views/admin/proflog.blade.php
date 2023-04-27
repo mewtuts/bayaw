@@ -48,31 +48,13 @@
             </ul>
         </div>
         {{-- end of header --}}
-        <h1 class="flex justify-center text-gray-500 text-4xl font-bold italic">Student Logs</h1>
+        <h1 class="flex justify-center ml-36 text-gray-500 text-4xl font-bold italic">Instructor Logs</h1>
 
 
         <div class="flex justify-end mt-5 mr-10">
             <div class="overflow-y-auto shadow-md sm:rounded-lg md:w-4/5 h-teria">
                 {{-- filters --}}
                 <div class="flex items-center justify-between pb-4">
-                    <div>
-                        <div class="w-full">
-                            <select class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 italic" name="user_type" id="filter" required>
-                                <option value="none" disabled selected>Sections</option>
-                                @foreach ($sections as $log)
-                                <option value="{{ $log->section }}" id="student">{{ $log->section }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    {{-- export --}}
-                    <div class="flex justify-end w-full mr-5">
-                        <form action="{{ '/export/logs' }}" enctype="multipart/form-data">
-                        @csrf
-                            <input type="submit" value="Export" class="block py-2 text-sm text-white border border-gray-300 rounded-lg w-60 bg-green-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                        </form>
-                    </div>
-                    {{-- end export --}}
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -99,9 +81,6 @@
                                 TIME OUT
                             </th>
                             <th scope="col" class="py-3 text-left pl-2">
-                                PC #
-                            </th>
-                            <th scope="col" class="py-3 text-left pl-2">
                                 SUBJETC
                             </th>
                             <th scope="col" class="py-3 text-left pl-2">
@@ -111,18 +90,15 @@
                                 ROOM #
                             </th>
                             <th scope="col" class="py-3 text-left pl-2">
-                                INSTRUCTOR
-                            </th>
-                            <th scope="col" class="py-3 text-left pl-2">
                                 FEEDBACK
                             </th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
-                        @foreach ($logs as $item)
+                        @foreach ($proflogs as $item)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="py-3 text-left pl-2">
-                                {{ $item->user_id }}
+                                {{ $item->name }}
                             </td>
                             <td class="py-3 text-left pl-2">
                                 {{ $item->day }}
@@ -136,19 +112,13 @@
                                 {{-- {{ $item->end_time }} --}}
                             </td>
                             <td class="py-3 text-left pl-2">
-                                PC {{ $item->pcnum }}
-                            </td>
-                            <td class="py-3 text-left pl-2">
                                 {{ $item->subject }}
                             </td>
                             <td class="py-3 text-left pl-2">
                                 {{ $item->section }}
                             </td>
                             <td class="py-3 text-left pl-2">
-                                {{ $item->room }}
-                            </td>
-                            <td class="py-3 text-left pl-2">
-                                {{ $item->instructor }}
+                                LAB {{ $item->room }}
                             </td>
                             <td class="py-3 text-left pl-2">
                                 {{ $item->feedback }}

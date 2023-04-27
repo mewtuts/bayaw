@@ -210,6 +210,11 @@ Route::get('/section', function (){
     ]);
 });
 
+Route::get('/instruc/logs', function(){
+    $proflogs = proflogs::get();
+    return view('admin.proflog', compact('proflogs'));
+});
+
 Route::get('/subject', function (){
     return view('admin.subject', [
         'subjects' => subjects::get()

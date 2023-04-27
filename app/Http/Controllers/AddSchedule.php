@@ -33,6 +33,7 @@ class AddSchedule extends Controller
         $schedule = schedules::find($id);
 
         $schedule->delete();
+        
         return redirect()->back()->with('success', 'successfully delete schedule');
 
     }
