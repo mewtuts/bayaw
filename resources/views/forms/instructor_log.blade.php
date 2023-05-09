@@ -203,9 +203,9 @@
             </div>
         </div>
 
-        <div class="flex justify-start pl-5 py-2 mt-5 mx-32 bg-green-700">
+        <div class="flex justify-center mx-32 bg-green-700">
             {{-- <button id="refresh-btn" class="float-left bg-slate-400 rounded-md p-1">Refresh</button> --}}
-            <h1 class="uppercase text-2xl font-semibold text-white pl-96">
+            <h1 class="uppercase text-2xl font-semibold text-white">
                 student list
             </h1>
         </div>
